@@ -1,6 +1,8 @@
 const express = require("express");
 const Register = require("../controllers/User")
 const Login = require("./Login");
+const power = require("../controllers/power")
+const joi = require("joi");
 const routeapp = express.Router();
 
 routeapp.post("/user", (req, res) => {
@@ -56,5 +58,29 @@ routeapp.post("/login", (req, res) => {
     }
   });
 });
+
+routeapp.post("/power", (req, res) => {
+  const {
+    healt,
+    meal,
+    power
+  } = req.body;
+  power.create({
+      healt: healt,
+      meal: meal,
+      power: power
+    })
+    .then((result) => {
+      res.status(201).send({
+        message: 'power add'
+      })
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: 'power failed add'
+      })
+    })
+
+})
 
 module.exports = routeapp;
