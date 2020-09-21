@@ -31,6 +31,17 @@ routeapp.post("/user", (req, res) => {
     });
 });
 
+routeapp.get('/user', (req, res) => {
+ Register.find()
+ .populate(power)
+ .then((result) => {
+   res.status(200).send({ message: 'success', data: result
+  }).catch(error => {
+    res.status(500).send({ message: 'error', details: error})
+  })
+ })
+})
+
 routeapp.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -78,6 +89,32 @@ routeapp.post("/power", (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message: 'power failed add'
+      })
+    })
+
+})
+
+routeapp.patch('/users/:userID', (req, res) => {
+  const {
+    powerId
+  } = req.body
+  Register.findByIdAndUpdate(req.params.userID, {
+      $push: {
+        power: powerId
+      },
+    }, {
+      new: true
+    })
+    .then((result) => {
+      res.status(200).send({
+        message: 'suuccess',
+        data: result
+      })
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: 'filed to push',
+        details: err
       })
     })
 

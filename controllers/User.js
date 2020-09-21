@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const joi = require('joi');
 const {
     Schema
 } = mongoose;
@@ -6,7 +7,12 @@ const {
 const userSchema = new Schema({
     username: String,
     email: String,
-    password: String
+    password: String,
+    //menghubungkan power ke dalam user
+    power: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }]
 });
 
 const User = mongoose.model('User', userSchema);
