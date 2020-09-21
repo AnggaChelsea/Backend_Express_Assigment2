@@ -32,14 +32,19 @@ routeapp.post("/user", (req, res) => {
 });
 
 routeapp.get('/user', (req, res) => {
- Register.find()
- .populate(power)
- .then((result) => {
-   res.status(200).send({ message: 'success', data: result
-  }).catch(error => {
-    res.status(500).send({ message: 'error', details: error})
-  })
- })
+  Register.find()
+    .populate(power)
+    .then((result) => {
+      res.status(200).send({
+        message: 'success',
+        data: result
+      }).catch(error => {
+        res.status(500).send({
+          message: 'error',
+          details: error
+        })
+      })
+    })
 })
 
 routeapp.post("/login", (req, res) => {
