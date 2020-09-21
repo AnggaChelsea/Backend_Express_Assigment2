@@ -1,6 +1,6 @@
 const express = require("express");
 const Register = require("../controllers/User")
-const Login = require("./Login");
+const Login = require("../controllers/Login");
 const Power = require("../controllers/Power")
 const joi = require("joi");
 const routeapp = express.Router();
@@ -51,7 +51,7 @@ routeapp.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  Login.findOne({
+  Login.find({
     email: email,
     password: password
   }, (err, user) => {
@@ -103,9 +103,9 @@ routeapp.patch('/users/:userID', (req, res) => {
   const {
     powerId
   } = req.body
-  Register.findByIdAndUpdate(req.params.userID, {
+  Register.findByIdAndUpdate(req.body.userID, {
       $push: {
-        power: powerId
+        Power: powerId
       },
     }, {
       new: true

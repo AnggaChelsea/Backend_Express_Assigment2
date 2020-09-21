@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
-const {Schema} = mongoose;
+const {
+    Schema
+} = mongoose;
 
 const loginSchema = new Schema({
-    email:String,
-    password:String
+    email: String,
+    password: String
 })
 
 
