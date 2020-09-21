@@ -1,7 +1,7 @@
 const express = require("express");
 const Register = require("../controllers/User")
 const Login = require("./Login");
-const power = require("../controllers/power")
+const Power = require("../controllers/Power")
 const joi = require("joi");
 const routeapp = express.Router();
 
@@ -61,13 +61,13 @@ routeapp.post("/login", (req, res) => {
 
 routeapp.post("/power", (req, res) => {
   const {
-    healt,
-    meal,
+    health,
+    meals,
     power
   } = req.body;
-  power.create({
-      healt: healt,
-      meal: meal,
+  Power.create({
+      health: health,
+      meals: meals,
       power: power
     })
     .then((result) => {
