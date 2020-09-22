@@ -1,18 +1,23 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
-const {DB} = require("mongodb")
+const {
+  DB
+} = require("mongodb")
+const dotenv = require("dotenv")
 const bodyParser = require("body-parser");
 const routers = require('./routers/router');
-const constroller = require("./controllers/User");
 const app = express();
-const port = 2000;
 
-app.use(express.urlencoded({extended:true}));
+//midleware
+app.use(express.urlencoded({
+  extended: true
+}));
 app.use(routers)
 
 mongoose.connect("mongodb://localhost/Assigment2", {
   useUnifiedTopology: true,
+  useFindAndModify: false,
   useNewUrlParser: true,
   useCreateIndex: true,
 });
@@ -24,6 +29,6 @@ db.once("open", () => {
   console.log("connection succes to MongoDb");
 });
 
-app.listen(port, () => {
-  console.log("App listening on port" + port);
+app.listen(9000, () => {
+  console.log("App listening on port 9000");
 });
