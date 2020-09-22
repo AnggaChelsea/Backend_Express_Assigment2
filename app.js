@@ -10,6 +10,7 @@ const routers = require('./routers/router');
 const app = express();
 
 //midleware
+//ini noding langsung ke github
 app.use(express.urlencoded({
   extended: true
 }));
