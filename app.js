@@ -1,20 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
-const {
-  DB
-} = require("mongodb")
-const dotenv = require("dotenv")
+const { DB } = require("mongodb");
+const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
-const routers = require('./routers/router');
+const routers = require("./routers/router");
 const app = express();
 
 //midleware
-//ini noding langsung ke github
-app.use(express.urlencoded({
-  extended: true
-}));
-app.use(routers)
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+app.use(routers);
 
 mongoose.connect("mongodb://localhost/Assigment2", {
   useUnifiedTopology: true,
@@ -22,7 +21,6 @@ mongoose.connect("mongodb://localhost/Assigment2", {
   useNewUrlParser: true,
   useCreateIndex: true,
 });
-
 
 const db = mongoose.connection;
 db.on("error", console.error.bind("connection error"));
