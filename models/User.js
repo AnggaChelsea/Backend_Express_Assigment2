@@ -6,18 +6,27 @@ const {
 
 //create Schema
 const userSchema = new Schema({
-    username: String,
-    email: String,
+    username: {
+        type: String,
+        
+    },
+    email: {
+        type: String,
+        default: 'email@example.com',
+        
+    },
     password:String,
+    
     //menghubungkan power dan Townhall ke dalam user
-    Townhall:[{ 
+    townhalls:[{ 
         type: Schema.Types.ObjectId,
-        reference: 'User'
+        ref: 'Townhall'
     }],
-    Power: [{
+    powers: [{
         type: Schema.Types.ObjectId,
-        references: 'User'
+        ref: 'Power'
     }]
+
 });
 
 //create module
