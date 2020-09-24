@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const Townhall = require('../models/Townhall')
+const Power = require('../models/Power')
 const joi = require('joi');
 const {
     Schema
@@ -8,12 +10,9 @@ const {
 const userSchema = new Schema({
     username: {
         type: String,
-        
     },
     email: {
-        type: String,
-        default: 'email@example.com',
-        
+        type: String
     },
     password:String,
     
@@ -29,6 +28,10 @@ const userSchema = new Schema({
 
 });
 
+userSchema.pre('save', function(next){
+    console.log(this.username,'ini jalan alhamdulillah')
+    next()
+})
 //create module
 const User = mongoose.model('User', userSchema);
 //exports some module

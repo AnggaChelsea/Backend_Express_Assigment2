@@ -3,6 +3,8 @@ const authRouter = express.Router();
 
 const User = require('../models/User');
 
+
+
 authRouter.post('/', (req, res) => {
     const {
         email,
