@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 const Townhall = require('../models/Townhall')
 const Power = require('../models/Power')
 const joi = require('joi');
@@ -14,10 +15,10 @@ const userSchema = new Schema({
     email: {
         type: String
     },
-    password:String,
-    
+    password: String,
+
     //menghubungkan power dan Townhall ke dalam user
-    townhalls:[{ 
+    townhalls: [{
         type: Schema.Types.ObjectId,
         ref: 'Townhall'
     }],
@@ -28,8 +29,13 @@ const userSchema = new Schema({
 
 });
 
-userSchema.pre('save', function(next){
-    console.log(this.username,'ini jalan alhamdulillah')
+userSchema.pre('save', async function (next) {
+    console.log(this.username, 'ini jalan alhamdulillah')
+    const salt = await bcrypt.genSalt(3)
+    const hash = await bcrypt.hash(this.password, salt)
+    this.password = hash
+
+    console.log(this.password)
     next()
 })
 //create module
