@@ -1,22 +1,33 @@
-// const express = require('express');
-// const dbRouter = express.Router();
-// const User = require('../models/User') 
+const express = require('express');
+const authRouter = express.Router();
 
-// routeapp.post("/login", (req, res) => {
-//     const {email, password} = req.body;
-  
-//     User.findOne({email:email})
-//     .then((result) => {
-//       if(password === result.password){
-//         console.log('succes login')
-//       }
-//       else{
-//         console.log('gagal login')
-//       }
-//       .catch(err =>{
-//         res.status(500).send({message:'error'})
+const User = require('../models/User');
 
-//       })
-//     })
+authRouter.post('/', (req, res) => {
+    const {
+        email,
+        password
+    } = req.body;
 
-//     module.exports = dbRouter;
+    User.findOne({
+            email: email
+        })
+        .then((result) => {
+            if (password === result.password) {
+                res.status(200).json({
+                    message: 'login successful'
+                })
+            } else {
+                res.status(401).json({
+                    message: 'wrong email'
+                })
+            }
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message: err
+            })
+        })
+})
+
+module.exports = authRouter;
