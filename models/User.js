@@ -16,7 +16,7 @@ const userSchema = new Schema({
         type: String,
         default: 'example@gmail.com'
     },
-    password: String,
+    password: {type:String, max: 8},
 
     //menghubungkan power dan Townhall ke dalam user
     townhalls: [{
