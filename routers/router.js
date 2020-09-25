@@ -35,7 +35,6 @@ routeapp.post("/townhall", (req, res) => {
       });
   });
 
-  //contoh t
-  //const string = "disini aku coba ("test") dulu ";
+  
 
 module.exports = routeapp;
