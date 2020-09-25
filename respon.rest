@@ -4,15 +4,20 @@
 GET http://localhost:5000/user
 
 ### Get value by id
-GET http://localhost:5000/api/values/1
+POST http://localhost:5000/login
+content-type: application/json
+{
+    "email": "angga@gmail.com",
+    "password": "angga123456"
+}
 
 ### Create model
-POST http://localhost:5000/api/values
+POST http://localhost:5000/login
 content-type: application/json
 
 {
-    "firstName": "John",
-    "lastName": "Brown"
+   "email": "angga@gmail.com",
+    "password": "angga123456"
 }
 
 ### Update model

@@ -10,10 +10,11 @@ const {
 //create Schema
 const userSchema = new Schema({
     username: {
-        type: String,
+        type: String
     },
     email: {
-        type: String
+        type: String,
+        default: 'example@gmail.com'
     },
     password: String,
 
