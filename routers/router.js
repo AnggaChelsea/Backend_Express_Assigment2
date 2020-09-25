@@ -1,7 +1,7 @@
 const express = require("express");
 const Login = require("../models/Login");
 const Power = require("../models/Power");
-const Townhall = require('../models/Townhall')
+const Townhall = require('../models/Townhall');
 const controllers = require("../controllers/userController")
 const joi = require("joi");
 const userRouter = require('./userRoute')
@@ -35,6 +35,7 @@ routeapp.post("/townhall", (req, res) => {
       });
   });
 
-  
+  //contoh t
+  //const string = "disini aku coba ("test") dulu ";
 
 module.exports = routeapp;
