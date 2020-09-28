@@ -3,21 +3,17 @@
 ### Get all values
 GET http://localhost:5000/user
 
-### Get value by id
-POST http://localhost:5000/login
-content-type: application/json
-{
-    "email": "angga@gmail.com",
-    "password": "angga123456"
-}
+### post users
+
 
 ### Create model
-POST http://localhost:5000/login
+POST http://localhost:5000/power
 content-type: application/json
 
 {
-   "email": "angga@gmail.com",
-    "password": "angga123456"
+    "health":5,
+    "meals":3,
+    "power":5
 }
 
 ### Update model
